@@ -32,13 +32,20 @@ public class MessageFormatter
         deltaMap.put("minute",deltaMinutes);
         deltaMap.put("second",deltaSeconds);
 
-        Map.Entry<String, Integer> stringIntegerEntry = deltaMap.entrySet().stream().filter(d -> d.getValue() != 0).findFirst().get();
+        Map.Entry<String, Integer> stringIntegerEntry = deltaMap.entrySet().stream().filter(d -> getValue(d) != 0).findFirst().orElse(null);
 
-        return stringIntegerEntry.getValue() + " "+ pluralIfNeeded(stringIntegerEntry) +" ago";
+        return getValue(stringIntegerEntry) + " "+ pluralIfNeeded(stringIntegerEntry) +" ago";
+    }
+
+    private static Integer getValue(Map.Entry<String, Integer> stringIntegerEntry)
+    {
+        return stringIntegerEntry == null ? 0 : stringIntegerEntry.getValue();
     }
 
     private static String pluralIfNeeded(Map.Entry<String, Integer> stringIntegerEntry)
     {
-        return stringIntegerEntry.getValue() > 1 ? stringIntegerEntry.getKey().concat("s") : stringIntegerEntry.getKey();
+        if (stringIntegerEntry == null)
+            return "seconds";
+        return getValue(stringIntegerEntry) > 1 ? stringIntegerEntry.getKey().concat("s") : stringIntegerEntry.getKey();
     }
 }

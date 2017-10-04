@@ -8,6 +8,7 @@ import marcosec.training.socialnetworking.post.dao.PostDaoImpl;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -33,7 +34,7 @@ public class PostServiceImplTest
     @Test
     public void shouldAddNewPost()
     {
-        postService.publishNewPost("Alice","Nice day",new GregorianCalendar());
+        postService.publishNewPost("Alice","Nice day", Calendar.getInstance());
 
         List<Post> alicePost = postDao.getAllPostsOf("Alice");
 
@@ -49,6 +50,30 @@ public class PostServiceImplTest
 
         Collection<String> followed = linkDao.getUsersFollowedBy("Alice");
         assertThat(followed, hasItem("Bob"));
+    }
+
+    @Test
+    public void shouldPrintAllPostsOfUsername()
+    {
+
+        Calendar twoMinutesAgo = Calendar.getInstance();
+        twoMinutesAgo.add(Calendar.MINUTE, -2);
+
+        Calendar oneHourAgo = Calendar.getInstance();
+        oneHourAgo.add(Calendar.HOUR, -1);
+
+        Calendar now = Calendar.getInstance();
+
+
+        postService.publishNewPost("Alice","Nice day", twoMinutesAgo);
+        postService.publishNewPost("Alice","Gym time", oneHourAgo);
+        postService.publishNewPost("Alice","Good night", now);
+
+        List<String> alicePosts = postService.readPostOf("Alice");
+
+        assertEquals("Good night (0 seconds ago)", alicePosts.get(0));
+        assertEquals("Nice day (2 minutes ago)", alicePosts.get(1));
+        assertEquals("Gym time (1 hour ago)", alicePosts.get(2));
     }
 
 }

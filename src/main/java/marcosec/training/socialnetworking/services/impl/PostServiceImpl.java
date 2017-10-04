@@ -1,11 +1,16 @@
 package marcosec.training.socialnetworking.services.impl;
 
 import marcosec.training.socialnetworking.link.dao.LinkDao;
+import marcosec.training.socialnetworking.post.MessageFormatter;
+import marcosec.training.socialnetworking.post.Post;
 import marcosec.training.socialnetworking.post.dao.PostDao;
 import marcosec.training.socialnetworking.services.PostService;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PostServiceImpl implements PostService
 {
@@ -33,7 +38,20 @@ public class PostServiceImpl implements PostService
     @Override
     public List<String> readPostOf(String username)
     {
-        return null;
+        List<Post> posts = postDao.getAllPostsOf(username);
+
+        List<Post> postsSortedByTime = posts.stream()
+                                        .sorted(Comparator.comparing(Post::getTime).reversed())
+                                        .collect(Collectors.toList());
+
+        List<String> formattedPosts = new ArrayList<>();
+
+        postsSortedByTime.stream()
+                .forEach(post ->
+                        formattedPosts.add(MessageFormatter.format(post.getMessage(),post.getTime()))
+                );
+
+        return formattedPosts;
     }
 
     @Override
