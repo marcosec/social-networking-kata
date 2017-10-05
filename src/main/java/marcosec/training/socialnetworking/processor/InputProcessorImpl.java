@@ -29,7 +29,7 @@ public class InputProcessorImpl implements InputProcessor
         String command = matcher.group(3);
         String argument = matcher.group(5);
 
-        commandMap.get(command).execute(username, argument, Calendar.getInstance());
+        System.out.println(commandMap.get(command).execute(username, argument, Calendar.getInstance()));
 
     }
 

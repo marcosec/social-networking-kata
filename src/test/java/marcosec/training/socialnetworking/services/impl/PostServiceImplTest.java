@@ -81,13 +81,11 @@ public class PostServiceImplTest
         Calendar oneHourAgo = Calendar.getInstance();
         oneHourAgo.add(Calendar.HOUR, -1);
 
-        postService.publishNewPost("Bob","Gym time", oneHourAgo);
-
-        postService.addNewFollower("Alice","Bob");
+        postService.publishNewPost("Alice","Gym time", oneHourAgo);
 
         List<String> aliceWall = postService.readWallOf("Alice");
 
-        assertEquals("Bob - Gym time (1 hour ago)", aliceWall.get(0));
+        assertEquals("Alice - Gym time (1 hour ago)", aliceWall.get(0));
     }
 
 
