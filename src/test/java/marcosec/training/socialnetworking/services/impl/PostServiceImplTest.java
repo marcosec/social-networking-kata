@@ -10,7 +10,6 @@ import org.junit.Test;
 
 import java.util.Calendar;
 import java.util.Collection;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.hasItem;
@@ -74,6 +73,46 @@ public class PostServiceImplTest
         assertEquals("Good night (0 seconds ago)", alicePosts.get(0));
         assertEquals("Nice day (2 minutes ago)", alicePosts.get(1));
         assertEquals("Gym time (1 hour ago)", alicePosts.get(2));
+    }
+
+    @Test
+    public void shouldPrintWallOfUsername()
+    {
+        Calendar oneHourAgo = Calendar.getInstance();
+        oneHourAgo.add(Calendar.HOUR, -1);
+
+        postService.publishNewPost("Bob","Gym time", oneHourAgo);
+
+        postService.addNewFollower("Alice","Bob");
+
+        List<String> aliceWall = postService.readWallOf("Alice");
+
+        assertEquals("Bob - Gym time (1 hour ago)", aliceWall.get(0));
+    }
+
+
+    @Test
+    public void shouldPrintWallOfUsernameSortedByPostedTime()
+    {
+        Calendar twoMinutesAgo = Calendar.getInstance();
+        twoMinutesAgo.add(Calendar.MINUTE, -2);
+
+        Calendar oneHourAgo = Calendar.getInstance();
+        oneHourAgo.add(Calendar.HOUR, -1);
+
+        Calendar now = Calendar.getInstance();
+
+        postService.publishNewPost("Alice","Nice day", twoMinutesAgo);
+        postService.publishNewPost("Bob","Gym time", oneHourAgo);
+        postService.publishNewPost("Alice","Good night", now);
+
+        postService.addNewFollower("Alice","Bob");
+
+        List<String> aliceWall = postService.readWallOf("Alice");
+
+        assertEquals("Alice - Good night (0 seconds ago)", aliceWall.get(0));
+        assertEquals("Alice - Nice day (2 minutes ago)", aliceWall.get(1));
+        assertEquals("Bob - Gym time (1 hour ago)", aliceWall.get(2));
     }
 
 }

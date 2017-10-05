@@ -6,11 +6,9 @@ import marcosec.training.socialnetworking.post.Post;
 import marcosec.training.socialnetworking.post.dao.PostDao;
 import marcosec.training.socialnetworking.services.PostService;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class PostServiceImpl implements PostService
 {
@@ -58,6 +56,35 @@ public class PostServiceImpl implements PostService
     public void addNewFollower(String username, String followedUsername)
     {
         linkDao.addFollower(username,followedUsername);
+    }
+
+    @Override
+    public List<String> readWallOf(String username)
+    {
+        List<Post> usernamePosts = postDao.getAllPostsOf(username);
+        Collection<String> usersFollowed = linkDao.getUsersFollowedBy(username);
+
+        List<Post> followedPosts = new ArrayList<>();
+        usersFollowed.stream()
+                .forEach(user ->
+                        followedPosts.addAll(postDao.getAllPostsOf(user))
+                );
+
+        List<Post> mergedPosts = Stream.concat(usernamePosts.stream(), followedPosts.stream()).collect(Collectors.toList());
+
+        List<Post> postsSortedByTime = mergedPosts.stream()
+                .sorted(Comparator.comparing(Post::getTime).reversed())
+                .collect(Collectors.toList());
+
+        List<String> formattedPosts = new ArrayList<>();
+
+        postsSortedByTime.stream()
+                .forEach(post ->
+                        formattedPosts.add(post.getUsername()+" - "+MessageFormatter.format(post.getMessage(),post.getTime()))
+                );
+
+        return formattedPosts;
+
     }
 
 
