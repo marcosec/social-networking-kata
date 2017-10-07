@@ -50,19 +50,18 @@ Implement a console-based social networking application (similar to Twitter) sat
 ### Instructions
 
 Clean and install the project
-```
-mvn clean
-mvn install
-```
+
+> mvn clean
+> mvn install
+
 Test
-```
-mvn test
-```
+
+> mvn test
+
 Run
-```
-mvn exec:java -Dexec.mainClass=marcosec.training.socialnetworking.Main
-```
+
+> mvn exec:java -Dexec.mainClass=marcosec.training.socialnetworking.Main
+
 Exit from running
-```
-exit
-```
+
+> exit
