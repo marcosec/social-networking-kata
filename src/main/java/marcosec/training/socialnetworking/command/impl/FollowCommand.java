@@ -1,24 +1,24 @@
 package marcosec.training.socialnetworking.command.impl;
 
 import marcosec.training.socialnetworking.command.Command;
-import marcosec.training.socialnetworking.services.PostService;
+import marcosec.training.socialnetworking.services.SocialNetworkService;
 
 import java.util.Calendar;
 
 public class FollowCommand implements Command
 {
 
-    private PostService postService;
+    private SocialNetworkService socialNetworkService;
 
-    public FollowCommand(PostService postService)
+    public FollowCommand(SocialNetworkService socialNetworkService)
     {
-        this.postService = postService;
+        this.socialNetworkService = socialNetworkService;
     }
 
     @Override
     public String execute(String username, String followedUsername, Calendar time)
     {
-        postService.addNewFollower(username,followedUsername);
+        socialNetworkService.addNewFollower(username,followedUsername);
         return "";
     }
 }

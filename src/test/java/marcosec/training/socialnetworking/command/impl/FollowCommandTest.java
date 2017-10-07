@@ -1,6 +1,6 @@
 package marcosec.training.socialnetworking.command.impl;
 
-import marcosec.training.socialnetworking.services.PostService;
+import marcosec.training.socialnetworking.services.SocialNetworkService;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -13,17 +13,17 @@ public class FollowCommandTest
 {
     private FollowCommand followCommand;
     @Mock
-    private PostService postService;
+    private SocialNetworkService socialNetworkService;
 
     @Test
     public void shouldFollow()
     {
         MockitoAnnotations.initMocks(this);
-        followCommand = new FollowCommand(postService);
+        followCommand = new FollowCommand(socialNetworkService);
         Calendar now = Calendar.getInstance();
 
         followCommand.execute("Alice", "Bob", now);
 
-        verify(postService).addNewFollower("Alice","Bob");
+        verify(socialNetworkService).addNewFollower("Alice","Bob");
     }
 }

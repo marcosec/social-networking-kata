@@ -15,9 +15,9 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.junit.Assert.*;
 
-public class PostServiceImplTest
+public class SocialNetworkServiceImplTest
 {
-    private PostServiceImpl postService;
+    private SocialNetworkServiceImpl postService;
     private PostDao postDao;
     private LinkDao linkDao;
 
@@ -27,7 +27,7 @@ public class PostServiceImplTest
         postDao = new PostDaoImpl();
         linkDao = new LinkDaoImpl();
 
-        postService = new PostServiceImpl(postDao,linkDao);
+        postService = new SocialNetworkServiceImpl(postDao,linkDao);
     }
 
     @Test

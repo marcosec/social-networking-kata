@@ -3,7 +3,7 @@ package marcosec.training.socialnetworking.services;
 import java.util.Calendar;
 import java.util.List;
 
-public interface PostService
+public interface SocialNetworkService
 {
     void publishNewPost(String username, String message, Calendar time);
     List<String> readPostOf(String username);

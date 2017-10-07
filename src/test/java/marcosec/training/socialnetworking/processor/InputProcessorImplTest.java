@@ -29,7 +29,7 @@ public class InputProcessorImplTest
     private WallCommand wallCommand;
 
     @Test
-    public void shouldParseInput_post()
+    public void shouldInterpretInput_post()
     {
         MockitoAnnotations.initMocks(this);
         HashMap<String, Command> commandMap = new HashMap<>();
@@ -43,7 +43,7 @@ public class InputProcessorImplTest
     }
 
     @Test
-    public void shouldParseInput_read()
+    public void shouldInterpretInput_read()
     {
         MockitoAnnotations.initMocks(this);
         HashMap<String, Command> commandMap = new HashMap<>();
@@ -57,7 +57,7 @@ public class InputProcessorImplTest
     }
 
     @Test
-    public void shouldParseInput_follows()
+    public void shouldInterpretInput_follows()
     {
         MockitoAnnotations.initMocks(this);
         HashMap<String, Command> commandMap = new HashMap<>();
@@ -71,7 +71,7 @@ public class InputProcessorImplTest
     }
 
     @Test
-    public void shouldParseInput_wall()
+    public void shouldInterpretInput_wall()
     {
         MockitoAnnotations.initMocks(this);
         HashMap<String, Command> commandMap = new HashMap<>();

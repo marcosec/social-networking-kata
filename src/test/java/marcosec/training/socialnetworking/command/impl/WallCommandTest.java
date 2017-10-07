@@ -1,6 +1,6 @@
 package marcosec.training.socialnetworking.command.impl;
 
-import marcosec.training.socialnetworking.services.PostService;
+import marcosec.training.socialnetworking.services.SocialNetworkService;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -16,16 +16,16 @@ public class WallCommandTest
 
     private WallCommand wallCommand;
     @Mock
-    private PostService postService;
+    private SocialNetworkService socialNetworkService;
 
     @Test
     public void shouldReadWall()
     {
         MockitoAnnotations.initMocks(this);
-        wallCommand = new WallCommand(postService);
+        wallCommand = new WallCommand(socialNetworkService);
 
 
-        when(postService.readWallOf("Alice")).thenReturn(Arrays.asList("Alice - post 1","Bob - post 2","Charlie - post 3"));
+        when(socialNetworkService.readWallOf("Alice")).thenReturn(Arrays.asList("Alice - post 1","Bob - post 2","Charlie - post 3"));
 
         String printedPosts = wallCommand.execute("Alice", "", Calendar.getInstance());
 

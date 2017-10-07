@@ -1,24 +1,24 @@
 package marcosec.training.socialnetworking.command.impl;
 
 import marcosec.training.socialnetworking.command.Command;
-import marcosec.training.socialnetworking.services.PostService;
+import marcosec.training.socialnetworking.services.SocialNetworkService;
 
 import java.util.Calendar;
 
 public class ReadCommand implements Command
 {
-    private PostService postService;
+    private SocialNetworkService socialNetworkService;
 
-    public ReadCommand(PostService postService)
+    public ReadCommand(SocialNetworkService socialNetworkService)
     {
-        this.postService = postService;
+        this.socialNetworkService = socialNetworkService;
     }
 
     @Override
     public String execute(String username, String message, Calendar time)
     {
         StringBuilder builder = new StringBuilder();
-        postService.readPostOf(username).stream().forEach(post -> builder.append(post).append("\n"));
+        socialNetworkService.readPostOf(username).stream().forEach(post -> builder.append(post).append("\n"));
         return builder.toString();
     }
 }

@@ -4,25 +4,25 @@ import marcosec.training.socialnetworking.link.dao.LinkDao;
 import marcosec.training.socialnetworking.post.MessageFormatter;
 import marcosec.training.socialnetworking.post.Post;
 import marcosec.training.socialnetworking.post.dao.PostDao;
-import marcosec.training.socialnetworking.services.PostService;
+import marcosec.training.socialnetworking.services.SocialNetworkService;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class PostServiceImpl implements PostService
+public class SocialNetworkServiceImpl implements SocialNetworkService
 {
     private PostDao postDao;
     private LinkDao linkDao;
 
-    public PostServiceImpl(PostDao postDao, LinkDao linkDao)
+    public SocialNetworkServiceImpl(PostDao postDao, LinkDao linkDao)
     {
         this.postDao = postDao;
         this.linkDao = linkDao;
     }
 
-    public PostServiceImpl()
+    public SocialNetworkServiceImpl()
     {
 
     }

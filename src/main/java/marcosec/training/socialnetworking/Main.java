@@ -9,43 +9,44 @@ import marcosec.training.socialnetworking.link.dao.LinkDaoImpl;
 import marcosec.training.socialnetworking.post.dao.PostDaoImpl;
 import marcosec.training.socialnetworking.processor.InputProcessor;
 import marcosec.training.socialnetworking.processor.InputProcessorImpl;
-import marcosec.training.socialnetworking.services.PostService;
-import marcosec.training.socialnetworking.services.impl.PostServiceImpl;
+import marcosec.training.socialnetworking.services.SocialNetworkService;
+import marcosec.training.socialnetworking.services.impl.SocialNetworkServiceImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class Main
 {
 
     public static final String PROMPT_COMMAND = "> ";
+    public static final String EXIT_COMMAND = "0";
 
     public static void main(String[] args)
     {
-        PostService postService = new PostServiceImpl(new PostDaoImpl(),new LinkDaoImpl());
+        SocialNetworkService socialNetworkService = new SocialNetworkServiceImpl(new PostDaoImpl(),new LinkDaoImpl());
+
         HashMap<String, Command> commandMap = new HashMap<>();
-        commandMap.put("->",new PostCommand(postService));
-        commandMap.put(null,new ReadCommand(postService));
-        commandMap.put("follows",new FollowCommand(postService));
-        commandMap.put("wall",new WallCommand(postService));
+        commandMap.put("->",new PostCommand(socialNetworkService));
+        commandMap.put(null,new ReadCommand(socialNetworkService));
+        commandMap.put("follows",new FollowCommand(socialNetworkService));
+        commandMap.put("wall",new WallCommand(socialNetworkService));
 
         InputProcessor inputProcessor = new InputProcessorImpl(commandMap);
 
         try
         {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.print(PROMPT_COMMAND);
-            String command = reader.readLine();
-
-            while (command != "0")
+            String command;
+            do
             {
-                inputProcessor.process(command);
-                System.out.print("> ");
+                System.out.print(PROMPT_COMMAND);
                 command = reader.readLine();
+                inputProcessor.process(command);
             }
+            while (!EXIT_COMMAND.equals(command));
+
         } catch (IOException e)
         {
             e.printStackTrace();

@@ -1,6 +1,6 @@
 package marcosec.training.socialnetworking.command.impl;
 
-import marcosec.training.socialnetworking.services.PostService;
+import marcosec.training.socialnetworking.services.SocialNetworkService;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -15,16 +15,16 @@ public class ReadCommandTest
 {
     private ReadCommand readCommand;
     @Mock
-    private PostService postService;
+    private SocialNetworkService socialNetworkService;
 
     @Test
     public void shouldRead()
     {
         MockitoAnnotations.initMocks(this);
-        readCommand = new ReadCommand(postService);
+        readCommand = new ReadCommand(socialNetworkService);
 
 
-        when(postService.readPostOf("Alice")).thenReturn(Arrays.asList("post 1","post 2","post 3"));
+        when(socialNetworkService.readPostOf("Alice")).thenReturn(Arrays.asList("post 1","post 2","post 3"));
 
         String printedPosts = readCommand.execute("Alice", "", Calendar.getInstance());
 

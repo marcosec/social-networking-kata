@@ -1,6 +1,6 @@
 package marcosec.training.socialnetworking.command.impl;
 
-import marcosec.training.socialnetworking.services.PostService;
+import marcosec.training.socialnetworking.services.SocialNetworkService;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -13,18 +13,18 @@ public class PostCommandTest
 {
     private PostCommand postCommand;
     @Mock
-    private PostService postService;
+    private SocialNetworkService socialNetworkService;
 
     @Test
     public void shouldPost()
     {
         MockitoAnnotations.initMocks(this);
-        postCommand = new PostCommand(postService);
+        postCommand = new PostCommand(socialNetworkService);
         Calendar now = Calendar.getInstance();
 
         postCommand.execute("Alice", "a message", now);
 
-        verify(postService).publishNewPost("Alice","a message", now);
+        verify(socialNetworkService).publishNewPost("Alice","a message", now);
     }
 
 }
