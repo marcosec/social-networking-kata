@@ -21,7 +21,7 @@ public class Main
 {
 
     public static final String PROMPT_COMMAND = "> ";
-    public static final String EXIT_COMMAND = "0";
+    public static final String EXIT_COMMAND = "exit";
 
     public static void main(String[] args)
     {
