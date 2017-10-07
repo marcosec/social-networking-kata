@@ -1,5 +1,6 @@
 package marcosec.training.socialnetworking.link.dao;
 
+import marcosec.training.socialnetworking.post.daos.impl.LinkDaoImpl;
 import org.junit.Before;
 import org.junit.Test;
 

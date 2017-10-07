@@ -1,10 +1,10 @@
 package marcosec.training.socialnetworking.services.impl;
 
-import marcosec.training.socialnetworking.link.dao.LinkDao;
-import marcosec.training.socialnetworking.link.dao.LinkDaoImpl;
+import marcosec.training.socialnetworking.post.daos.LinkDao;
+import marcosec.training.socialnetworking.post.daos.impl.LinkDaoImpl;
 import marcosec.training.socialnetworking.post.Post;
-import marcosec.training.socialnetworking.post.dao.PostDao;
-import marcosec.training.socialnetworking.post.dao.PostDaoImpl;
+import marcosec.training.socialnetworking.post.daos.PostDao;
+import marcosec.training.socialnetworking.post.daos.impl.PostDaoImpl;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,6 +1,7 @@
-package marcosec.training.socialnetworking.post.dao;
+package marcosec.training.socialnetworking.post.daos.impl;
 
 import marcosec.training.socialnetworking.post.Post;
+import marcosec.training.socialnetworking.post.daos.PostDao;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.ArrayList;

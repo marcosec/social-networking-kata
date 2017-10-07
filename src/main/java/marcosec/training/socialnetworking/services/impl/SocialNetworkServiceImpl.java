@@ -1,9 +1,9 @@
 package marcosec.training.socialnetworking.services.impl;
 
-import marcosec.training.socialnetworking.link.dao.LinkDao;
 import marcosec.training.socialnetworking.post.MessageFormatter;
 import marcosec.training.socialnetworking.post.Post;
-import marcosec.training.socialnetworking.post.dao.PostDao;
+import marcosec.training.socialnetworking.post.daos.LinkDao;
+import marcosec.training.socialnetworking.post.daos.PostDao;
 import marcosec.training.socialnetworking.services.SocialNetworkService;
 import org.apache.commons.collections4.CollectionUtils;
 

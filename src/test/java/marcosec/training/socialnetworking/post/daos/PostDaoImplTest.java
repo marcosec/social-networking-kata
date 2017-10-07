@@ -1,6 +1,7 @@
-package marcosec.training.socialnetworking.post.dao;
+package marcosec.training.socialnetworking.post.daos;
 
 import marcosec.training.socialnetworking.post.Post;
+import marcosec.training.socialnetworking.post.daos.impl.PostDaoImpl;
 import org.junit.Before;
 import org.junit.Test;
 

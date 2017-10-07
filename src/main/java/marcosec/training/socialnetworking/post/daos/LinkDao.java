@@ -1,4 +1,4 @@
-package marcosec.training.socialnetworking.link.dao;
+package marcosec.training.socialnetworking.post.daos;
 
 import java.util.Collection;
 

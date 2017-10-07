@@ -1,4 +1,4 @@
-package marcosec.training.socialnetworking.post.dao;
+package marcosec.training.socialnetworking.post.daos;
 
 import marcosec.training.socialnetworking.post.Post;
 
