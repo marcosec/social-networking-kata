@@ -51,8 +51,7 @@ Implement a console-based social networking application (similar to Twitter) sat
 
 Clean and install the project
 
-> mvn clean
-> mvn install
+> mvn clean install
 
 Test
 
