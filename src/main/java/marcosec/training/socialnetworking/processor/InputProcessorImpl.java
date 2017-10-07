@@ -19,7 +19,7 @@ public class InputProcessorImpl implements InputProcessor
     }
 
     @Override
-    public void process(String input)
+    public String process(String input)
     {
         Pattern pattern = Pattern.compile(REGEX);
         Matcher matcher = pattern.matcher(input);
@@ -29,7 +29,7 @@ public class InputProcessorImpl implements InputProcessor
         String command = matcher.group(3);
         String argument = matcher.group(5);
 
-        System.out.println(commandMap.get(command).execute(username, argument, Calendar.getInstance()));
+        return commandMap.get(command).execute(username, argument, Calendar.getInstance());
 
     }
 

@@ -43,7 +43,7 @@ public class Main
             {
                 System.out.print(PROMPT_COMMAND);
                 command = reader.readLine();
-                inputProcessor.process(command);
+                System.out.println(inputProcessor.process(command));
             }
             while (!EXIT_COMMAND.equals(command));
 
