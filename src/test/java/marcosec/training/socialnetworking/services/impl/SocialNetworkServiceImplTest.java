@@ -31,7 +31,7 @@ public class SocialNetworkServiceImplTest
     }
 
     @Test
-    public void shouldAddNewPost()
+    public void shouldAddNewUserPost()
     {
         postService.publishNewPost("Alice","Nice day", Calendar.getInstance());
 
@@ -43,7 +43,7 @@ public class SocialNetworkServiceImplTest
 
 
     @Test
-    public void shouldAddNewFollowerToUsername()
+    public void shouldAddNewFollowerToUser()
     {
         postService.addNewFollower("Alice","Bob");
 
@@ -52,7 +52,7 @@ public class SocialNetworkServiceImplTest
     }
 
     @Test
-    public void shouldPrintAllPostsOfUsername()
+    public void shouldFormatAllPostsOfUser()
     {
 
         Calendar twoMinutesAgo = Calendar.getInstance();
@@ -76,7 +76,7 @@ public class SocialNetworkServiceImplTest
     }
 
     @Test
-    public void shouldPrintWallOfUsername()
+    public void shouldFormatPostsInTheWallOfUser()
     {
         Calendar oneHourAgo = Calendar.getInstance();
         oneHourAgo.add(Calendar.HOUR, -1);
@@ -90,7 +90,7 @@ public class SocialNetworkServiceImplTest
 
 
     @Test
-    public void shouldPrintWallOfUsernameSortedByPostedTime()
+    public void shouldPrintWallOfUserSortedByPostedTime()
     {
         Calendar twoMinutesAgo = Calendar.getInstance();
         twoMinutesAgo.add(Calendar.MINUTE, -2);
