@@ -12,9 +12,7 @@ import marcosec.training.socialnetworking.processor.InputProcessorImpl;
 import marcosec.training.socialnetworking.services.SocialNetworkService;
 import marcosec.training.socialnetworking.services.impl.SocialNetworkServiceImpl;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.HashMap;
 
 public class Main
@@ -38,12 +36,16 @@ public class Main
         try
         {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
             String command;
             do
             {
-                System.out.print(PROMPT_COMMAND);
+                writer.write(PROMPT_COMMAND);
+                writer.flush();
                 command = reader.readLine();
-                System.out.println(inputProcessor.process(command));
+                writer.write(inputProcessor.process(command));
+                writer.newLine();
+                writer.flush();
             }
             while (!EXIT_COMMAND.equals(command));
 
