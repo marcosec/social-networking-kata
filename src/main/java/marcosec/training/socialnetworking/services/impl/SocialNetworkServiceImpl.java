@@ -81,7 +81,12 @@ public class SocialNetworkServiceImpl implements SocialNetworkService
 
         postsSortedByTime.stream()
                 .forEach(post ->
-                        formattedPosts.add(post.getUsername()+" - "+MessageFormatter.format(post.getMessage(),post.getTime()))
+                        formattedPosts.add(
+                                new StringBuilder(post.getUsername())
+                                        .append(" - ")
+                                        .append(MessageFormatter.format(post.getMessage(),post.getTime()))
+                                        .toString()
+                        )
                 );
 
         return formattedPosts;
