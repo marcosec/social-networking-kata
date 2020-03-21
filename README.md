@@ -7,6 +7,7 @@ Implement a console-based social networking application (similar to Twitter) sat
 
 **Posting**: Alice can publish messages to a personal timeline
 
+
 > \> Alice -> I love the weather today\
 > \> Bob -> Damn! We lost!\
 > \> Bob -> Good game though.
